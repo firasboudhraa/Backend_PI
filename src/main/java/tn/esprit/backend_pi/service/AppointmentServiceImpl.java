@@ -25,6 +25,9 @@ public class AppointmentServiceImpl implements IAppointmentService{
 
     @Override
     public Appointment createAppointment(Appointment appointment) {
+        if (appointmentRepository.isAppointmentTimeTaken(appointment.getDate())) {
+           return null;
+        }
         return appointmentRepository.save(appointment);
     }
 
