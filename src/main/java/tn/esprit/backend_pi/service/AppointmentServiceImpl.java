@@ -25,9 +25,15 @@ public class AppointmentServiceImpl implements IAppointmentService{
 
     @Override
     public Appointment createAppointment(Appointment appointment) {
-        if (appointmentRepository.isAppointmentTimeTaken(appointment.getDate())) {
-           return null;
+        // Step 1: Check if the requested appointment date is already taken for the same service
+        boolean isTimeTakenForService = appointmentRepository.existsByServiceAndDate(appointment.getGeneralServiceId(), appointment.getDate());
+
+        // If the date is already taken for this service, return null or throw an exception
+        if (isTimeTakenForService) {
+            return null;  // Date already taken for this service, appointment not created
         }
+
+        // Step 2: Create the appointment since the date is available for the service
         return appointmentRepository.save(appointment);
     }
 
