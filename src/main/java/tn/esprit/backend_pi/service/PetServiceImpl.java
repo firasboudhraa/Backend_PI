@@ -1,6 +1,7 @@
 package tn.esprit.backend_pi.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.backend_pi.entity.Pet;
 import tn.esprit.backend_pi.repository.PetRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class PetServiceImpl implements IPetService{
+    @Autowired
     PetRepository petRepository ;
     public List<Pet> retrieveAllPets(){
         return petRepository.findAll();

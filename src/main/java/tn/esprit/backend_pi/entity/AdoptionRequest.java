@@ -19,7 +19,7 @@ import java.util.UUID;
 @Getter
 public class AdoptionRequest {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long petId;

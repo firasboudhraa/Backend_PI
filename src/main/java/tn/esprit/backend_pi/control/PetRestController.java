@@ -14,6 +14,7 @@ public class PetRestController {
     @Autowired
     IPetService petService ;
 
+    // http://localhost:8089/Backend/api/pet/retrieve-all-pets
     @GetMapping("/retrieve-all-pets")
     public List<Pet> getPets(){
         return petService.retrieveAllPets();
@@ -27,6 +28,8 @@ public class PetRestController {
 
     @PostMapping("/add-pet")
     public Pet addPet(@RequestBody Pet pet){
+        System.out.println("Received Pet: " + pet);  // Log the received pet
+
         return petService.addPet(pet) ;
     }
 
