@@ -21,11 +21,11 @@ import java.util.UUID;
 public class PetSettingRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
-    private UUID petId;
-    private UUID sitterId;
-    private UUID ownerId;
+    private Long petId;
+    private Long sitterId;
+    private Long ownerId;
 
     private Date startDate;
     private Date endDate;

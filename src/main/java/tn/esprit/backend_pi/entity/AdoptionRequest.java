@@ -20,10 +20,10 @@ import java.util.UUID;
 public class AdoptionRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
-    private UUID petId;
-    private UUID adopterId;
+    private Long petId;
+    private Long adopterId;
 
     private Date applicationDate;
     private String status;
