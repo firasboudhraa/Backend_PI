@@ -8,5 +8,4 @@ import tn.esprit.backend_pi.entity.Appointment;
 import java.time.LocalDateTime;
 
 public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
-    boolean existsByServiceAndDate(Long generalServiceId, LocalDateTime date);
 }

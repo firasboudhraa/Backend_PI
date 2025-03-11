@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long  idAppointment;
 
     private LocalDateTime date;
@@ -22,15 +22,19 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 
-    @Column(nullable = false)
-    private Long  userId;  // Reference to User
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User  userId;
 
-    @Column(nullable = true)
-    private Long  petId;  // Reference to Pet
+    @ManyToOne
+    @JoinColumn(name = "id",nullable = false)
+    private Pet  petId;
 
-    @Column(nullable = true)
-    private Long  generalServiceId; // Reference to General Service
+    @ManyToOne
+    @JoinColumn(name= "idService",nullable = true)
+    private PetService  generalServiceId; // Reference to General Service
 
-    @Column(nullable = true)
-    private Long  vetId; // Reference to Veterinarian (For Vet Consultation)
+    @ManyToOne
+    @JoinColumn(name= "vet_id",nullable = true)
+    private User  vetId; // Reference to Veterinarian (For Vet Consultation)
 }

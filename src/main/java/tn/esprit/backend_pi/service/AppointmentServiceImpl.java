@@ -3,7 +3,9 @@ package tn.esprit.backend_pi.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.backend_pi.entity.Appointment;
+import tn.esprit.backend_pi.entity.PetService;
 import tn.esprit.backend_pi.repository.AppointmentRepository;
+import tn.esprit.backend_pi.repository.ServiceRepository;
 
 import java.util.List;
 
@@ -12,6 +14,8 @@ public class AppointmentServiceImpl implements IAppointmentService{
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+    @Autowired
+    private ServiceRepository serviceRepository;
 
     @Override
     public List<Appointment> getAllAppointments() {
@@ -25,15 +29,15 @@ public class AppointmentServiceImpl implements IAppointmentService{
 
     @Override
     public Appointment createAppointment(Appointment appointment) {
-        // Step 1: Check if the requested appointment date is already taken for the same service
-        boolean isTimeTakenForService = appointmentRepository.existsByServiceAndDate(appointment.getGeneralServiceId(), appointment.getDate());
-
-        // If the date is already taken for this service, return null or throw an exception
-        if (isTimeTakenForService) {
-            return null;  // Date already taken for this service, appointment not created
+        PetService petService = serviceRepository.findById(appointment.getGeneralServiceId().getIdService()).get();
+        // Check if the requested slot is available for the selected service
+        if (!petService.getAvailableSlots().contains(appointment.getDate())) {
+            return null;
         }
+        // Remove the booked slot from the available slots list
+        petService.getAvailableSlots().remove(appointment.getDate());
+        serviceRepository.save(petService);
 
-        // Step 2: Create the appointment since the date is available for the service
         return appointmentRepository.save(appointment);
     }
 

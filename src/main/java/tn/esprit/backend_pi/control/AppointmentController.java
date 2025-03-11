@@ -29,11 +29,7 @@ public class AppointmentController {
     // POST: Add a new Appointment
     @PostMapping("/add-appointment")
     public Appointment addAppointment(@RequestBody Appointment appointmentRequest) {
-        Appointment a = appointmentService.createAppointment(appointmentRequest);
-        if (a == null){
-            return null;
-        }
-        return a;
+        return appointmentService.createAppointment(appointmentRequest);
     }
 
     // DELETE: Remove an Appointment by ID
