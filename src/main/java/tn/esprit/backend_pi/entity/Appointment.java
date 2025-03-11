@@ -23,11 +23,11 @@ public class Appointment {
     private AppointmentStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id",nullable = true)
     private User  userId;
 
     @ManyToOne
-    @JoinColumn(name = "id",nullable = false)
+    @JoinColumn(name = "petId",nullable = true)
     private Pet  petId;
 
     @ManyToOne
