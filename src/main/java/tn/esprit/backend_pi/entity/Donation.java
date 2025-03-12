@@ -1,7 +1,6 @@
 package tn.esprit.backend_pi.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,10 +21,6 @@ public class Donation {
     private long id;
     @JsonProperty
     private float amount;
-    @ManyToOne
-    @JoinColumn(name = "user_id",nullable = true)
-    @JsonProperty
-    private User UserId;
     @JsonProperty
     private LocalDateTime date;
 

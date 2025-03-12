@@ -1,5 +1,7 @@
 package tn.esprit.backend_pi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,6 +32,7 @@ public class Event {
     private String location;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    @JsonIgnore
     @JsonProperty
     private List<Donation> donations;
 }
