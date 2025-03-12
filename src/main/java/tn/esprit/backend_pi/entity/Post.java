@@ -11,7 +11,12 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String content;
+
+    @Enumerated(EnumType.STRING) // Store the enum as a String in the database
+    private PostTypeEnum type;
+
     private LocalDateTime createdAt;
 
     @JsonManagedReference  // Prevent infinite recursion
@@ -22,8 +27,9 @@ public class Post {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Post(String content) {
+    public Post(String content, PostTypeEnum type) {
         this.content = content;
+        this.type = type;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -42,6 +48,14 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public PostTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(PostTypeEnum type) {
+        this.type = type;
     }
 
     public LocalDateTime getCreatedAt() {
