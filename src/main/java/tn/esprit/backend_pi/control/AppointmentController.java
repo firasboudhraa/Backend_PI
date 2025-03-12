@@ -1,5 +1,6 @@
 package tn.esprit.backend_pi.control;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.backend_pi.entity.Appointment;
@@ -8,6 +9,7 @@ import tn.esprit.backend_pi.service.IAppointmentService;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/appointments")
 public class AppointmentController {
 
@@ -40,7 +42,7 @@ public class AppointmentController {
 
     // PUT: Modify an existing Appointment
     @PutMapping("/modify-appointment")
-    public Appointment modifyAppointment(@RequestBody Appointment appointmentRequest) {
-        return appointmentService.updateAppointment(appointmentRequest);
+    public Appointment modifyAppointment(@RequestBody Appointment appointment) {
+        return appointmentService.updateAppointment(appointment);
     }
 }

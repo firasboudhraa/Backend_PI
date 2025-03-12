@@ -1,5 +1,6 @@
 package tn.esprit.backend_pi.control;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.backend_pi.entity.PetService;
@@ -8,6 +9,7 @@ import tn.esprit.backend_pi.service.IPetService;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/petServices")
 public class PetServiceController {
 

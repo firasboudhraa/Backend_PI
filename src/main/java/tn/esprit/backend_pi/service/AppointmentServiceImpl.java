@@ -1,5 +1,6 @@
 package tn.esprit.backend_pi.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.backend_pi.entity.Appointment;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class AppointmentServiceImpl implements IAppointmentService{
 
     @Autowired
@@ -27,6 +29,7 @@ public class AppointmentServiceImpl implements IAppointmentService{
 
     @Override
     public Appointment createAppointment(Appointment appointment) {
+
         return appointmentRepository.save(appointment);
     }
 

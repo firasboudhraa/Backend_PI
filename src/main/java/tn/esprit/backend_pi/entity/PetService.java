@@ -1,5 +1,7 @@
 package tn.esprit.backend_pi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
 import lombok.*;
@@ -25,9 +27,12 @@ public class PetService {
     private int durationInMinutes;
     private String address;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<LocalDateTime> availableSlots;
 
     @Column(nullable = false)
     private Long providerId;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "generalServiceId")
+    private List<Appointment> appointments;
 }

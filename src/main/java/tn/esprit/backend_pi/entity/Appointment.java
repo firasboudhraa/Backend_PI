@@ -1,5 +1,8 @@
 package tn.esprit.backend_pi.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -32,6 +35,7 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name= "idService",nullable = true)
+    @JsonIgnore
     private PetService  generalServiceId; // Reference to General Service
 
     @ManyToOne
