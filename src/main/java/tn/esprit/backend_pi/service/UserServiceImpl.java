@@ -22,7 +22,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User retrieveUser(UUID id) {
+    public User retrieveUser(Long id) {
         return userRepository.findById(id).get();
     }
 
@@ -31,13 +31,9 @@ public class UserServiceImpl implements IUserService {
         return userRepository.save(user);
     }
 
-   /* @Override
-    public void removeUser(UUID id) {
-        userRepository.deleteById(id);
-    }
-*/
+
     @Override
-    public String removeUser(UUID id) {
+    public String removeUser(Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
             return "User deleted successfully.";

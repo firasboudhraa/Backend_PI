@@ -1,8 +1,8 @@
 package tn.esprit.backend_pi.control;
 
-//import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.backend_pi.entity.User;
 import tn.esprit.backend_pi.service.IUserService;
@@ -18,62 +18,48 @@ public class UserRestController {
     private IUserService userService;
 
     // http://localhost:8089/Backend/user/retrieve-all-users
-    /*
-    @Operation(description = "Récupérer tous les utilisateurs de la base de données")
-    */
+
     @GetMapping("/retrieve-all-users")
     public List<User> getUsers() {
         return userService.retrieveAllUsers();
     }
 
     // http://localhost:8089/Backend/user/retrieve-user/{user-id}
-    /*
-    @Operation(description = "Récupérer un utilisateur par ID")
-    */
+
     @GetMapping("/retrieve-user/{user-id}")
-    public User retrieveUser(@PathVariable("user-id") UUID id) {
+    public User retrieveUser(@PathVariable("user-id") Long id) {
         return userService.retrieveUser(id);
     }
 
     // http://localhost:8089/Backend/user/add-user
-    /*
-    @Operation(description = "Ajouter un nouvel utilisateur")
-    */
-
     @PostMapping("/add-user")
-    public User addUser(@RequestBody User addeduser) {
-        User savedUser = userService.addUser(addeduser);
-        System.out.println("Saved User: " + savedUser);
-        return savedUser;
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User savedUser = userService.addUser(user);
+        return ResponseEntity.ok(savedUser);
     }
-
-
-
-
 
     //http://localhost:8089/Backend/user/remove-user/user-id}
-    /*
-    @Operation(description = "Supprimer un utilisateur par ID")
-    */
-    /*@DeleteMapping("/remove-user/{user-id}")
-    public void removeUser(@PathVariable("user-id") UUID id) {
-        userService.removeUser(id);
-    }
-*/
     @DeleteMapping("/remove-user/{user-id}")
-    public String removeUser(@PathVariable("user-id") UUID id) {
+    public String removeUser(@PathVariable("user-id") Long id) {
         return userService.removeUser(id);
     }
 
 
     // http://localhost:8089/Backend/user/modify-user
-    /*
-    @Operation(description = "Modifier un utilisateur existant")
-    */
-   @PutMapping("/modify-user")
+
+  /* @PutMapping("/modify-user")
     public User modifyUser(@RequestBody User user) {
         return userService.modifyUser(user);
     }
+*/
+    @PutMapping("/modify-user")
+    public ResponseEntity<?> modifyUser(@RequestBody User user) {
+        if (user.getId() == null) {
+            return ResponseEntity.badRequest().body("User ID is required for update.");
+        }
+        return ResponseEntity.ok(userService.modifyUser(user));
+    }
+
 
 
 }

@@ -16,8 +16,8 @@ import java.util.UUID;
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idAppointment;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idAppointment;
 
     private LocalDateTime date;
     private int durationInMinutes;

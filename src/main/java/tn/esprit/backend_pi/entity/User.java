@@ -18,9 +18,8 @@ import java.util.UUID;
 
 public class User {
     @Id
-    @GeneratedValue
-
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
     private String email;
@@ -29,10 +28,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
-    @PrePersist // Automatically generate UUID before saving
-    public void generateUUID() {
-        if (id == null) {
-            id = UUID.randomUUID();
-        }
-    }
+
+
 }

@@ -19,8 +19,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Vet {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idAppointment;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idAppointment;
 
     private LocalDateTime date;
     private int durationInMinutes;

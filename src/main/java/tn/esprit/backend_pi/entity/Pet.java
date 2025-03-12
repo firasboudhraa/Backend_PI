@@ -20,13 +20,13 @@ import java.util.UUID;
 public class Pet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private  String name;
     private String species;
     private int age;
-    private UUID owner_id;
+    private Long owner_id;
 
 
 

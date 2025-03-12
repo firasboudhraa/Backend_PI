@@ -7,10 +7,10 @@ import java.util.UUID;
 public interface IUserService {
 
     List<User> retrieveAllUsers();
-    User retrieveUser(UUID id);
+    User retrieveUser(Long id);
     User addUser(User user);
     //void removeUser(UUID id);
-     String removeUser(UUID id);
+     String removeUser(Long id);
 
    User modifyUser(User user);
 }
